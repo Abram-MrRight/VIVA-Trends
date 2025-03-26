@@ -28,14 +28,17 @@
     <script type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
   </script>
-  <script type="text/javascript">
-   (function(){
-      emailjs.init({
-        publicKey: "lu_zxitCtxBVABEC0",
-      });
-   })();
+  <script src="script.js" type="text/javascript"></script>
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
   </script>
-  <script src="script.js"></script>
+   <script type="text/javascript">
+     (function(){
+      emailjs.init({
+       publicKey: "lu_zxitCtxBVABEC0",
+        });
+     })();
+   </script>
 
 </head>
 
@@ -193,7 +196,7 @@
                         <textarea class="form-control" rows="8" id="message" placeholder="Message" required="required"></textarea>
                     </div>
                     <div>
-                        <button class="btn btn-primary py-2 px-4" type="submit" id="sendMessageButton" onclick="sendMessage()">Send Message</button>
+                        <button class="btn btn-primary py-2 px-4" type="submit" id="sendMessageButton">Send Message</button>
                     </div>
                 </form>
 

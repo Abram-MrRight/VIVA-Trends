@@ -1,26 +1,40 @@
-    // Define the sendMessage function
-    function sendMessage(event) {
+document.addEventListener("DOMContentLoaded", function() {
+    const contactForm = document.getElementById("contactForm");
 
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const subject = document.getElementById('subject').value;
-        const message = document.getElementById('message').value;
+    // Prevent the default form submission
+    contactForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Stop form from submitting
 
-        const templateParams = {
-            name: name,
-            email: email,
-            subject: subject,
-            message: message
+        // Collect form data
+        var params = {
+            subject: document.getElementById("subject").value,
+            name: document.getElementById("name").value,
+            email_id: document.getElementById("email").value,
+            message: document.getElementById("message").value
         };
 
-        // Send email using EmailJS
-        emailjs.send("service_dxha0ik", "template_bmxamho", templateParams)
-        .then(function(response) {
-            document.getElementById('successMessage').style.display = 'block';
-            document.getElementById('errorMessage').style.display = 'none';
-        }, function(error) {
-            document.getElementById('errorMessage').style.display = 'block';
-            document.getElementById('successMessage').style.display = 'none';
-        });
-    }
+        // Log the parameters to check the values
+        console.log("Form data:", params);
 
+        // Send email using EmailJS
+        emailjs.send("service_dxha0ik", "template_qqctedr", params)
+            .then(function(response) {
+                // Debugging success response
+                console.log("✅ Success: Response Status:", response.status);
+                console.log("✅ Success: Response Details:", response);
+                
+                // Show success message and hide error message
+                document.getElementById("successMessage").style.display = "block";
+                document.getElementById("errorMessage").style.display = "none";
+                contactForm.reset(); // Reset the form after successful submission
+            })
+            .catch(function(error) {
+                // Debugging error response
+                console.error("❌ Failed: Error Details:", error);
+                
+                // Show error message and hide success message
+                document.getElementById("successMessage").style.display = "none";
+                document.getElementById("errorMessage").style.display = "block";
+            });
+    });
+});
